@@ -29,8 +29,8 @@ pipeline {
             steps {
                 step([$class: 'AWSCodeDeployPublisher',
                     applicationName: 'aws-codedeploy-jenkins',
-                    awsAccessKey: $AWS_ACCESS_KEY_ID,
-                    awsSecretKey: $AWS_SECRET_ACCESS_KEY,
+                    awsAccessKey: ${AWS_ACCESS_KEY_ID},
+                    awsSecretKey: ${AWS_SECRET_ACCESS_KEY},
                     credentials: 'awsAccessKey',
                     deploymentConfig: 'CodeDeployDefault.AllAtOnce',
                     deploymentGroupAppspec: false,
