@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/applications/apollo-missions-api
+hooks:
+  BeforeInstall:
+    - location: scripts/linux/install_dependencies.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/linux/install_application.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/linux/start_application.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/linux/stop_application.sh
+      timeout: 300
+      runas: root

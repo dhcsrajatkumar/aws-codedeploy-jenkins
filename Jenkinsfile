@@ -25,6 +25,15 @@ pipeline {
                 }
             }
         }
+        stage('Prepare Deployment') {
+            steps {
+                sh 'mkdir target/deployment'
+                sh 'mv resources/aws-codedeploy/appspec.yml target/deployment/'
+                sh 'mv resources/scripts target/deployment/'
+                sh 'mv target/lib/* target/deployment/'
+                sh 'mv target/apollo-missions-api-1.0.0-runner.jar target/deployment/'
+            }
+        }
         stage('Deploy') {
             steps {
                 step([$class: 'AWSCodeDeployPublisher',
@@ -34,11 +43,11 @@ pipeline {
                     credentials: 'awsAccessKey',
                     deploymentConfig: 'CodeDeployDefault.AllAtOnce',
                     deploymentGroupAppspec: false,
-                    deploymentGroupName: 'aws-codedeploy-jenkins-ec2-in-pace',
+                    deploymentGroupName: 'aws-codedeploy-jenkins-ec2-in-place',
                     deploymentMethod: 'deploy',
                     excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 300, proxyHost: '', proxyPort: 0,
                     region: 'eu-central-1', s3bucket: 'io-aws-codedeploy', s3prefix: 'aws-codedeploy-jenkins',
-                    subdirectory: '', versionFileName: '', waitForCompletion: true])
+                    subdirectory: 'target/deployment', versionFileName: '', waitForCompletion: true])
             }
         }
     }
