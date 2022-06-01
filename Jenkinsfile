@@ -30,7 +30,7 @@ pipeline {
                 sh 'mkdir target/deployment'
                 sh 'mv resources/aws-codedeploy/appspec.yml target/deployment/'
                 sh 'mv resources/scripts target/deployment/'
-                sh 'mv target/lib/* target/deployment/'
+                sh 'mv target/lib target/deployment/'
                 sh 'mv target/apollo-missions-api-1.0.0-runner.jar target/deployment/'
             }
         }

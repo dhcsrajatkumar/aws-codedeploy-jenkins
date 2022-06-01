@@ -5,18 +5,18 @@ files:
     destination: /home/ec2-user/applications/apollo-missions-api
 hooks:
   BeforeInstall:
-    - location: scripts/linux/install_dependencies.sh
+    - location: scripts/linux/before_install.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
   AfterInstall:
-    - location: scripts/linux/install_application.sh
+    - location: scripts/linux/after_install.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
   ApplicationStart:
     - location: scripts/linux/start_application.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
   ApplicationStop:
     - location: scripts/linux/stop_application.sh
       timeout: 300
-      runas: root
+      runas: ec2-user

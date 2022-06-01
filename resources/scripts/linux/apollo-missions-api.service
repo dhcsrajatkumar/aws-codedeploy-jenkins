@@ -1,13 +1,21 @@
 [Unit]
 Description=Apollo Missions Java REST API
+After=network.target
 
 [Service]
-User=ubuntu
+Type=simple
+
+User=ec2-user
+Group=ec2-user
+
 WorkingDirectory=/home/ec2-user/applications/apollo-missions-api
 ExecStart=/home/ec2-user/applications/apollo-missions-api/apollo-missions-api.sh
-Type=simple
-Restart=on-failure
-RestartSec=10
+
+StandardOutput=append:/home/ec2-user/applications/apollo-missions-api/log/apollo-missions-api.log
+StandardError=append:/home/ec2-user/applications/apollo-missions-api/log/apollo-missions-api.err.log
+
+TimeoutStartSec=60
+TimeoutStopSec=60
 
 [Install]
 WantedBy=multi-user.target
