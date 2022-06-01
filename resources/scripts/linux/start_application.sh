@@ -1,2 +1,2 @@
 #!/bin/bash
-systemctl start apollo-missions-api
+sudo systemctl start apollo-missions-api
