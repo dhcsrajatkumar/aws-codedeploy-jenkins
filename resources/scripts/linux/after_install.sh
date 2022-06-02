@@ -1,11 +1,10 @@
 #!/bin/bash
 
 # Create linux service for the application
-APPS_FOLDER=/home/ec2-user/applications
-APP_FOLDER=$APPS_FOLDER/apollo-missions-api
+APP_FOLDER=/home/ec2-user/applications/apollo-missions-api
 
-sudo chown ec2-user -R $APPS_FOLDER
-sudo chgrp ec2-user -R $APPS_FOLDER
+sudo chown ec2-user -R $APP_FOLDER
+sudo chgrp ec2-user -R $APP_FOLDER
 
 sudo mv $APP_FOLDER/scripts/linux/apollo-missions-api.service /etc/systemd/system/apollo-missions-api.service
 sudo systemctl daemon-reload
