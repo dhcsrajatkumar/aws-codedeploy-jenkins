@@ -1,33 +1,25 @@
-# Apollo Missions REST API
+# AWS CodeDeploy Jenkins Sample Application
 
-This REST API provides some basic data about the [Apollo missions](https://wehackthemoon.com/missions). It is meant as a sample Java REST API to be used within the ISAAC Developer Blog posts.
+Sample application used as a reference for the CI/CD on AWS guidelines for the Java Chapter.
 
-Endpoints regarding the Apollo Missions:
+The application exposes the following endpoints:
 1. /missions/manned
 2. /missions/manned/{missionId}
+3. /health
+4. /longComputation
 
-Endpoints that can be used when experimenting with [AWS EC2 Auto Scaling Service](https://aws.amazon.com/ec2/autoscaling/) 
-and using [Elastic Load Balancing Service](https://aws.amazon.com/elasticloadbalancing/):
-1. /longComputation
-2. /health
+The files needed for AWS CodeDeploy are located in the resources' folder.
 
 ## Requirements
 
 To compile and run this application you will need:
 
 - JDK 1.8+
-- GraalVM (if you intend to make a native executable)
 
 ### Configuring JDK 1.8+
 
 Make sure that the `JAVA_HOME` environment variable has been set, 
 and that a JDK 1.8+ `java` command is on the path.
-
-### Configuring GraalVM
-Make sure that the `GRAALVM_HOME` environment variable has been set.
-
-See the [Building a Native Executable guide](https://quarkus.io/guides/building-native-image-guide)
-for help setting up your environment.
 
 ## Building the application
 
@@ -57,44 +49,3 @@ First compile it:
 Then run it:
 
 > java -jar ./target/apollo-missions-api-1.0.0-runner.jar
-
-### Run Quarkus as a native executable
-
-You can also create a native executable from this application without making any
-source code changes. A native executable removes the dependency on the JVM:
-everything needed to run the application on the target platform is included in
-the executable, allowing the application to run with minimal resource overhead.
-
-Compiling a native executable takes a bit longer, as GraalVM performs additional
-steps to remove unnecessary codepaths. Use the  `native` profile to compile a
-native executable:
-
-> ./mvnw package -Dnative
-
-After the compilation is done, you'll be able to run this executable directly:
-
-> ./target/apollo-missions-api-1.0.0-runner
-
-### Run Quarkus in JVM mode in a docker container
-First compile it:
-
-> ./mvnw package
-
-Then, build the image with:
-
-> docker build -f src/main/docker/Dockerfile.jvm -t isaacdeveloperblog/apollo-missions-api:1.0.0 .
-
-Then run the container using:
-> docker run -i --rm -p 8080:8080 isaacdeveloperblog/apollo-missions-api:1.0.0
-
-### Run Quarkus as a native executable in a docker container
-First compile it:
-
-> ./mvnw package -Pnative -Dquarkus.native.container-build=true
-
-Then, build the image with:
-
-> docker build -f src/main/docker/Dockerfile.native -t isaacdeveloperblog/apollo-missions-api-native:1.0.0 .
-
-Then run the container using:
-> docker run -i --rm -p 8080:8080 isaacdeveloperblog/apollo-missions-api-native:1.0.0
