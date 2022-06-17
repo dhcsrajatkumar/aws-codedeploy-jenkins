@@ -45,7 +45,7 @@ pipeline {
                     deploymentGroupAppspec: false,
                     deploymentGroupName: 'aws-codedeploy-jenkins-ec2-in-place',
                     deploymentMethod: 'deploy',
-                    excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 300, proxyHost: '', proxyPort: 0,
+                    excludes: '', iamRoleArn: '', includes: '**', pollingFreqSec: 15, pollingTimeoutSec: 900, proxyHost: '', proxyPort: 0,
                     region: 'eu-central-1', s3bucket: 'io-aws-codedeploy', s3prefix: 'aws-codedeploy-jenkins',
                     subdirectory: 'target/deployment', versionFileName: '', waitForCompletion: true])
             }
